@@ -7,7 +7,7 @@
     "start": "webpack server --node-env=development",
     "build-dev": "webpack --node-env=development",
     "build-prod": "webpack --node-env=production",
-    "clear": "rd /s /q dist"
+    "clear": "rm -r ./dist"
   },
   "keywords": [],
   "author": "",

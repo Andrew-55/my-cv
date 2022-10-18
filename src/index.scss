@@ -1,1 +1,74 @@
 @import './libs/normalize';
+@import './style/fonts';
+@import './style/var';
+
+body > * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Proxima nova', sans-serif;
+}
+
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.header .container {
+    display: grid;
+    grid-template-areas:
+            "hp ht ht"
+            "hp hj hj"
+            "hp hc hc";
+    align-items: center;
+    justify-items: center;
+}
+
+.header {
+    background-color: $header-bg;
+    padding: calc($length-hight*5);
+    color: $header-title;
+    &__title {
+        grid-area: ht;
+        font-size: 40px;
+        line-height: 1.2em;
+        font-weight: 700;
+        margin: 0;
+    }
+    &__job {
+        font-size: 25px;
+        line-height: 1.2em;
+        grid-area: hj;
+    }
+    &__contacts {
+        grid-area: hc;
+        display: flex;
+        column-gap: calc($length-width*10);
+        &__email, &__phone {
+            position: relative;
+        }
+
+        &__email::before, &__phone::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -35px;
+            min-width: 25px;
+            min-height: 25px;
+            background: url('./images/email.svg') center / cover;
+        }
+        &__phone::before {
+            top: -4px;
+            background: url('./images/telephone.svg') center / cover;
+        }
+    }
+}
+.photo {
+    background-color: #fff;
+    grid-area: hp;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
