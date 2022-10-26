@@ -205,3 +205,8 @@ body {
     align-self: center;
   }
 }
+
+.canvas {
+  position: absolute;
+  z-index: -2;
+}
