@@ -18,6 +18,11 @@ body {
 .container {
   max-width: 1400px;
   margin: 0 auto;
+
+  @media (max-width: 1500px) {
+    padding-left: calc($length-width * 3);
+    padding-right: calc($length-width * 3);
+  }
 }
 
 .header {
@@ -34,6 +39,10 @@ body {
     grid-template-columns: 2fr 8fr 2fr;
     align-items: center;
     justify-items: center;
+
+    @media (max-width: 1100px){
+      grid-template-columns: 2fr 8fr 1fr;
+    }
   }
 
   &__title {
@@ -96,12 +105,25 @@ body {
     }
   }
 }
-.experiences {
+
+.experiences,
+.education,
+.courses,
+.additional-info {
   &__item {
     margin-bottom: calc($length-hight * 4);
     display: grid;
     grid-template-columns: 400px 1fr;
     column-gap: calc($length-width * 5);
+
+    @media (max-width: 1100px) {
+          grid-template-columns: 300px 1fr;
+        }
+  }
+}
+
+.experiences, .education {
+  &__item {
 
     &__left-block {
       text-align: center;
@@ -112,6 +134,9 @@ body {
       margin-bottom: calc($length-hight);
     }
   }
+}
+
+.experiences {
   &__company {
     text-transform: uppercase;
     font-size: 24px;
@@ -121,39 +146,18 @@ body {
   }
 }
 .education {
-  &__item {
-    margin-bottom: calc($length-hight * 4);
-    display: grid;
-    grid-template-columns: 400px 1fr;
-    column-gap: calc($length-width * 5);
-
-    &__left-block {
-      text-align: center;
-      color: $text-dark;
-      font-weight: 700;
-    }
-    &__left-block > div:not(:last-child) {
-      margin-bottom: calc($length-hight);
-    }
-  }
   &__duration {
     font-weight: 300;
   }
   &__disc {
-      span {
-        font-weight: 700;
-        color: $text-dark;
-      }
+    span {
+      font-weight: 700;
+      color: $text-dark;
+    }
   }
 }
 
 .courses {
-  &__item {
-    margin-bottom: calc($length-hight * 4);
-    display: grid;
-    grid-template-columns: 400px 1fr;
-    column-gap: calc($length-width * 5);
-  }
   &__year {
     font-weight: 300;
     justify-self: center;
@@ -165,10 +169,6 @@ body {
 }
 .additional-info {
   &__item {
-    margin-bottom: calc($length-hight * 4);
-    display: grid;
-    grid-template-columns: 400px 1fr;
-    column-gap: calc($length-width * 5);
     font-weight: 700;
     color: $text-dark;
   }
@@ -179,34 +179,142 @@ body {
 }
 
 /* Elements */
-.h2 {
-  &__title {
+.h2__title  {
     display: block;
     position: relative;
     width: max-content;
+    max-height: 36px;
     white-space: nowrap;
     font-size: 30px;
     line-height: 1.2em;
     color: $header-bg;
     text-align: center;
-  }
-}
-.h2__title__wrap {
-  display: flex;
-  column-gap: 40px;
-  justify-content: center;
-  margin-bottom: calc($length-hight * 2);
-  &__line {
-    content: '';
-    width: 100%;
-    height: 5px;
-    border-radius: 5px;
-    background-color: $header-bg;
-    align-self: center;
-  }
+
+    &__wrap {
+      display: flex;
+      column-gap: 40px;
+      justify-content: center;
+      margin-bottom: calc($length-hight * 2);
+      &__line {
+        content: '';
+        width: 100%;
+        height: 5px;
+        border-radius: 5px;
+        background-color: $header-bg;
+        align-self: center;
+      }
+    }
 }
 
 .canvas {
   position: absolute;
   z-index: -2;
+  width: 100%;
+}
+
+@media (max-width: 1000px) {
+  body {
+    font-size: 16px;
+  }
+  .header {
+    .container {
+      grid-template-areas:
+        'hp ht'
+        'hp hj'
+        'hp hc';
+      grid-template-columns: 2fr 10fr;
+      justify-items: start;
+      column-gap: calc($length-width*10);
+    }
+  
+    &__title {
+      font-size: 30px;
+    }
+    &__job {
+      font-size: 20px;
+    }
+    &__contacts {
+      padding-left: 30px;
+      column-gap: calc($length-width * 5);
+      &__email::before,
+      &__phone::before {
+        top: 0px;
+        left: -30px;
+        min-width: 20px;
+        min-height: 20px;
+      }
+      &__phone::before {
+        top: -2px;
+      }
+    }
+  }
+  .h2__title {
+      font-size: 20px;
+
+    &__wrap {
+      column-gap: 20px;
+      height: 22px;
+      &__line {
+        height: 3px;
+        border-radius: 3px;
+      }
+    }
+  }
+
+
+  .experiences {
+    &__company {
+      font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .header {
+    .container {
+      column-gap: calc($length-width*3);
+      row-gap: calc($length-hight);
+    }
+    &__title {
+      font-size: 25px;
+    }
+    &__contacts {
+      grid-area: hc;
+      display: flex;
+      flex-direction: column;
+      row-gap: calc($length-hight);
+      &__email::before,
+      &__phone::before {
+        top: -1px;
+        left: -25px;
+        min-width: 15px;
+        min-height: 15px;
+        }
+      &__phone::before {
+        top: -2px;
+      }
+    }
+  }
+  .photo {
+    max-width: 100px;
+    align-self: flex-start;
+  }
+  .experiences {
+    &__company {
+      font-size: 15px;
+    }
+  }
+  .experiences,
+.education,
+.courses,
+.additional-info {
+  &__item {
+    grid-template-columns: 200px 1fr;
+    column-gap: calc($length-width * 3);
+  }
+}
+  
 }
